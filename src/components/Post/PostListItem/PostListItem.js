@@ -24,7 +24,7 @@ function PostListItem (props) {
     <Grid item xs={12} sm={4} style={styles.gridItem}>
       <Card style={styles.card}>
         <CardMedia image=''>
-          <Link to={`/details/${props.helpSeeker.cuid}`} >
+          <Link to={`/details/${props.helpSeeker._id}`} >
             <img style={styles.postImage} src={reptileImage} alt='Contemplative Reptile' />
           </Link>
         </CardMedia>
@@ -48,7 +48,7 @@ function PostListItem (props) {
 
 PostListItem.propTypes = {
   helpSeeker: PropTypes.shape({
-    cuid: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     iban: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

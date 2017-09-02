@@ -12,7 +12,6 @@ import sanitizeHtml from 'sanitize-html'
 
 export function getHelpSeekers (req, res) {
   HelpSeeker.find().sort('-description').exec((err, helpSeekers) => {
-    console.log(res.status)
     if (err) {
       res.status(500).send(err)
     }
@@ -49,7 +48,7 @@ export function addHelpSeeker (req, res) {
   newHelpSeeker.dateStatusChanged = sanitizeHtml(newHelpSeeker.dateStatusChanged)
 
   newHelpSeeker.slug = slug(newHelpSeeker.title.toLowerCase(), { lowercase: true })
-  newHelpSeeker.cuid = cuid()
+  newHelpSeeker.id = cuid()
   newHelpSeeker.save((err, saved) => {
     if (err) {
       res.status(500).send(err)
@@ -79,7 +78,7 @@ export function getHelpSeeker (req, res) {
  * @param res
  * @returns void
  */
-export function deletePost (req, res) {
+export function deleteHelpSeeker (req, res) {
   HelpSeeker.findOne({ cuid: req.params.cuid }).exec((err, helpSeeker) => {
     if (err) {
       res.status(500).send(err)

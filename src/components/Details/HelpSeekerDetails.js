@@ -1,7 +1,11 @@
 import React, { PropTypes } from 'react'
-import { withStyles } from 'material-ui/styles'
+/* import { withStyles } from 'material-ui/styles' */
+import { connect } from 'react-redux'
 import Typography from 'material-ui/Typography'
 import reptileImage from '../Post/PostListItem/abd50bc0e11052fea9669f18f0c017bc.jpg'
+import { fetchHelpSeeker } from '../../actions/HelpSeekerActions'
+import { getHelpSeeker } from '../../reducers/HelpSeekerReducer'
+/* import helpSeeker from '../../server/models/helpSeeker' */
 
 const styles = {
   card: {
@@ -15,11 +19,21 @@ const styles = {
   }
 }
 
+HelpSeekerDetails.need = [params => {
+  return fetchHelpSeeker(params.cuid)
+}]
+
+function mapStateToProps (state, props) {
+  return {
+    post: getHelpSeeker(state, props.params.cuid),
+  }
+}
+
 function HelpSeekerDetails (props) {
   return (
     <div>
       <Typography type='display3' gutterBottom>
-        Display 3
+        {props.helpSeeker.name}
       </Typography>
       <img style={styles.postImage} src={reptileImage} alt='Contemplative Reptile' />
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat tortor fermentum mi fermentum
@@ -45,4 +59,4 @@ HelpSeekerDetails.propTypes = {
   }).isRequired,
 }
 
-export default withStyles(styles, { name: 'HelpSeekerDetails' })(HelpSeekerDetails)
+export default connect(mapStateToProps)(HelpSeekerDetails)

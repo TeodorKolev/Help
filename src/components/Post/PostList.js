@@ -20,6 +20,7 @@ function PostList (props) {
 
 PostList.propTypes = {
   helpSeekers: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     iban: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

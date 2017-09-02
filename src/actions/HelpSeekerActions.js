@@ -13,6 +13,12 @@ export function addHelpSeeker (helpSeeker) {
   }
 }
 
+export function fetchHelpSeeker (cuid) {
+  return (dispatch) => {
+    return callApi(`details/${cuid}`).then(res => dispatch(addHelpSeeker(res.helpSeeker)))
+  }
+}
+
 export function addHelpSeekerRequest (helpSeeker) {
   return (dispatch) => {
     return callApi('helpSeekers', 'helpSeeker', {
@@ -47,12 +53,6 @@ export function fetchHelpSeekers () {
     return callApi('helpSeekers').then(res => {
       dispatch(addHelpSeekers(res.helpSeekers))
     })
-  }
-}
-
-export function fetchHelpSeeker (cuid) {
-  return (dispatch) => {
-    return callApi(`details/${cuid}`).then(res => dispatch(addHelpSeeker(res.helpSeeker)))
   }
 }
 
