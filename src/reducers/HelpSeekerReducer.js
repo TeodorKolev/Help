@@ -17,7 +17,7 @@ const HelpSeekerReducer = (state = initialState, action) => {
 
     case DELETE_HELP_SEEKER :
       return {
-        data: state.data.filter(helpSeeker => helpSeeker.cuid !== action.cuid),
+        data: state.data.filter(helpSeeker => helpSeeker._id !== action._id),
       }
 
     default:
@@ -31,7 +31,7 @@ const HelpSeekerReducer = (state = initialState, action) => {
 export const getHelpSeekers = state => state.helpSeekers.data
 
 // Get Help Seeker by cuid
-export const getHelpSeeker = (state, cuid) => state.helpSeekers.data.filter(helpSeeker => helpSeeker.cuid === cuid)[0]
+export const getHelpSeeker = (state, _id) => state.helpSeekers.data.filter(helpSeeker => helpSeeker._id === _id)[0]
 
 // Export Reducer
 export default HelpSeekerReducer

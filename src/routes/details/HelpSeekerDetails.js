@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react'
-/* import { withStyles } from 'material-ui/styles' */
 import { connect } from 'react-redux'
 import Typography from 'material-ui/Typography'
-import reptileImage from '../Post/PostListItem/abd50bc0e11052fea9669f18f0c017bc.jpg'
+import reptileImage from '../../components/Post/PostListItem/abd50bc0e11052fea9669f18f0c017bc.jpg'
 import { fetchHelpSeeker } from '../../actions/HelpSeekerActions'
 import { getHelpSeeker } from '../../reducers/HelpSeekerReducer'
-/* import helpSeeker from '../../server/models/helpSeeker' */
 
 const styles = {
   card: {
@@ -20,12 +18,12 @@ const styles = {
 }
 
 HelpSeekerDetails.need = [params => {
-  return fetchHelpSeeker(params.cuid)
+  return fetchHelpSeeker(params._id)
 }]
 
 function mapStateToProps (state, props) {
   return {
-    post: getHelpSeeker(state, props.params.cuid),
+    helpSeeker: getHelpSeeker(state, props.params._id),
   }
 }
 
@@ -53,6 +51,7 @@ function HelpSeekerDetails (props) {
 
 HelpSeekerDetails.propTypes = {
   helpSeeker: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     iban: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
