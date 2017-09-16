@@ -48,7 +48,7 @@ const routes = {
       load: () => import(/* webpackChunkName: 'scroll' */ './scroll'),
     },
     {
-      path: '/details/:id',
+      path: '/details/:_id',
       load: () => import(/* webpackChunkName: 'details' */ './details'),
     },
 

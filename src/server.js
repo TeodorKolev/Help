@@ -20,8 +20,6 @@ import ReactDOM from 'react-dom/server'
 import PrettyError from 'pretty-error'
 import App from './components/App'
 import Html from './components/Html'
-import { ErrorPageWithoutStyle } from './routes/error/ErrorPage'
-import errorPageStyle from './routes/error/ErrorPage.css'
 import createFetch from './createFetch'
 import passport from './passport'
 import router from './router'
@@ -216,7 +214,7 @@ pe.skipNodeFiles()
 pe.skipPackage('express')
 
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
+/* app.use((err, req, res, next) => {
   console.error(pe.render(err))
   const html = ReactDOM.renderToStaticMarkup(
     <Html
@@ -229,7 +227,7 @@ app.use((err, req, res, next) => {
   )
   res.status(err.status || 500)
   res.send(`<!doctype html>${html}`)
-})
+}) */
 
 //
 // Launch the server

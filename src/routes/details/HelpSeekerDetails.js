@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
-import Typography from 'material-ui/Typography'
+import Typography from 'material-ui/Tgit pushypography'
 import reptileImage from '../../components/Post/PostListItem/abd50bc0e11052fea9669f18f0c017bc.jpg'
-import { fetchHelpSeeker } from '../../actions/HelpSeekerActions'
-import { getHelpSeeker } from '../../reducers/HelpSeekerReducer'
 
 const styles = {
   card: {
@@ -14,16 +11,6 @@ const styles = {
   },
   gridItem: {
     padding: '12px'
-  }
-}
-
-HelpSeekerDetails.need = [params => {
-  return fetchHelpSeeker(params._id)
-}]
-
-function mapStateToProps (state, props) {
-  return {
-    helpSeeker: getHelpSeeker(state, props.params._id),
   }
 }
 
@@ -58,4 +45,4 @@ HelpSeekerDetails.propTypes = {
   }).isRequired,
 }
 
-export default connect(mapStateToProps)(HelpSeekerDetails)
+export default HelpSeekerDetails

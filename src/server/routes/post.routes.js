@@ -18,6 +18,6 @@ router.route('/posts').post(PostController.addPost)
 // Delete a post by cuid
 router.route('/posts/:cuid').delete(PostController.deletePost)
 
-router.route('/details/:cuid').delete(HelpSeekerController.getHelpSeeker)
+router.route('/details/:_id').delete(HelpSeekerController.getHelpSeeker)
 
 export default router

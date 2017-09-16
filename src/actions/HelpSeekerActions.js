@@ -13,9 +13,9 @@ export function addHelpSeeker (helpSeeker) {
   }
 }
 
-export function fetchHelpSeeker (cuid) {
+export function fetchHelpSeeker (_id) {
   return (dispatch) => {
-    return callApi(`details/${cuid}`).then(res => dispatch(addHelpSeeker(res.helpSeeker)))
+    return callApi(`details/${_id}`).then(res => dispatch(addHelpSeeker(res.helpSeeker)))
   }
 }
 

@@ -9,8 +9,8 @@ function PostList (props) {
     <div className={s.root}>
       <div className={s.container}>
         <Masonry className={s.grid}>
-          {props.helpSeekers.map((helpSeeker, index) => (
-            <PostListItem helpSeeker={helpSeeker} key={index} />
+          {props.helpSeekers.map((helpSeeker) => (
+            <PostListItem helpSeeker={helpSeeker} key={helpSeeker._id} />
           ))}
         </Masonry>
       </div>
