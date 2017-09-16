@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Typography from 'material-ui/Tgit pushypography'
+import Typography from 'material-ui/Typography'
 import reptileImage from '../../components/Post/PostListItem/abd50bc0e11052fea9669f18f0c017bc.jpg'
 
 const styles = {
