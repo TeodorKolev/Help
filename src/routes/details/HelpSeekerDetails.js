@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
 import Typography from 'material-ui/Typography'
 import reptileImage from '../../components/Post/PostListItem/abd50bc0e11052fea9669f18f0c017bc.jpg'
-import { fetchHelpSeeker } from '../../actions/HelpSeekerActions'
-import { getHelpSeeker } from '../../reducers/HelpSeekerReducer'
 
 const styles = {
   card: {
@@ -16,17 +13,6 @@ const styles = {
     padding: '12px'
   }
 }
-
-HelpSeekerDetails.need = [params => {
-  return fetchHelpSeeker('59aab5e604e921d8683c4083')
-}]
-
-function mapStateToProps (state, props) {
-  return {
-    helpSeeker: getHelpSeeker(state, '59aab5e604e921d8683c4083'),
-  }
-}
-
 function HelpSeekerDetails (props) {
   return (
     <div>
@@ -51,11 +37,10 @@ function HelpSeekerDetails (props) {
 
 HelpSeekerDetails.propTypes = {
   helpSeeker: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     iban: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
 }
 
-export default connect(mapStateToProps)(HelpSeekerDetails)
+export default HelpSeekerDetails

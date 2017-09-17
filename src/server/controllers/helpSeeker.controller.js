@@ -64,7 +64,7 @@ export function addHelpSeeker (req, res) {
  * @returns void
  */
 export function getHelpSeeker (req, res) {
-  HelpSeeker.findOne({ _id: req.params._id }).exec((err, helpSeeker) => {
+  HelpSeeker.findOne({ cuid: req.params.cuid }).exec((err, helpSeeker) => {
     if (err) {
       res.status(500).send(err)
     }

@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const helpSeekerSchema = new Schema({
-  _id: { type: 'String', required: false },
+  cuid: { type: 'String', required: false },
   title: { type: 'String', required: false },
   name: { type: 'String', required: true },
   image: { type: 'Buffer', required: false },

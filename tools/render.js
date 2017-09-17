@@ -38,7 +38,7 @@ async function render () {
   // add dynamic routes
   const helpSeekers = await fetch(`http://${server.host}/api/helpSeekers`).then(res => res.json())
   helpSeekers.forEach(helpSeeker => routes.push(
-    `/details/${helpSeeker._id}`
+    `/details/${helpSeeker.cuid}`
   ))
 
   await Promise.all(
