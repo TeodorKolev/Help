@@ -6,7 +6,7 @@ import { fetchHelpSeeker } from '../../actions/HelpSeekerActions'
 const title = 'Details'
 
 async function action ({ params, store }) {
-  const getHelpSeeker = await store.dispatch(fetchHelpSeeker(params.cuid))
+  const getHelpSeeker = await store.dispatch(fetchHelpSeeker(params._id))
   const helpSeeker = getHelpSeeker.helpSeeker
   return {
     chunks: ['details'],
