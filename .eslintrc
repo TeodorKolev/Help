@@ -1,0 +1,43 @@
+{
+  "extends": [
+    "plugin:ava/recommended",
+    "standard",
+    "standard-react"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "ava",
+    "react",
+    "promise"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "ecmaFeatures": {
+    "jsx": true,
+    "es6": true,
+    "classes": true
+  },
+  "rules": {
+    "no-underscore-dangle" : 0,
+    "arrow-body-style": [0],
+    "react/jsx-no-bind": [0],
+    "import/no-unresolved": [0],  // Until import plugin supports webpack 2 resolveModules
+    "key-spacing"          : "off",
+    "jsx-quotes"           : [2, "prefer-single"],
+    "max-len"              : [2, 120, 2],
+    "object-curly-spacing" : [2, "always"],
+    "comma-dangle"         : "off"
+  },
+  "settings": {
+    // Allow absolute paths in imports, e.g. import Button from 'components/Button'
+    // https://github.com/benmosher/eslint-plugin-import/tree/master/resolvers
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src"]
+      }
+    }
+  }
+}
