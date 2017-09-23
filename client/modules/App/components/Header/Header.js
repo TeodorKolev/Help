@@ -1,17 +1,96 @@
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import { FormattedMessage } from 'react-intl';
+import React, { PropTypes, Component } from 'react';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import MenuIcon from 'material-ui-icons/Menu';
+import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
+
 
 // Import Style
-import styles from './Header.css';
+// import styles from './Header.css';
 
-export function Header(props, context) {
-  const languageNodes = props.intl.enabledLanguages.map(
-    lang => <li key={lang} onClick={() => props.switchLanguage(lang)} className={lang === props.intl.locale ? styles.selected : ''}>{lang}</li>
-  );
+const styles = theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 3,
+    width: '100%',
+  },
+  flex: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+});
 
-  return (
-    <div className={styles.header}>
+const ITEM_HEIGHT = 48;
+
+class Header extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      anchorEl: null,
+      open: false,
+    };
+  }
+
+  handleClick = event => {
+    this.setState({ open: true, anchorEl: event.currentTarget });
+  };
+
+  handleRequestClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    return (
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton className={this.props.classes.menuButton} color="contrast" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography type="title" color="inherit" className={this.props.classes.flex}>
+            Help
+          </Typography>
+          <IconButton
+            aria-label="More"
+            aria-owns={this.state.open ? 'long-menu' : null}
+            aria-haspopup="true"
+            onClick={this.handleClick}
+          >
+            <MoreVertIcon />
+          </IconButton>
+          <Menu
+            id="long-menu"
+            anchorEl={this.state.anchorEl}
+            open={this.state.open}
+            onRequestClose={this.handleRequestClose}
+            color="contrast"
+            PaperProps={{
+              style: {
+                maxHeight: ITEM_HEIGHT * 4.5,
+                width: 200,
+              },
+            }}
+          >
+            {this.props.intl.enabledLanguages.map(lang =>
+              <MenuItem key={lang} onClick={() => {
+                this.handleRequestClose(),
+                this.props.switchLanguage(lang)
+              }} className={lang === this.props.intl.locale ? styles.selected : ''}>{lang}</MenuItem>
+            )}
+          </Menu>
+        </Toolbar>
+      </AppBar>
+    )
+  }
+
+
+/*    <div className={styles.header}>
       <div className={styles['language-switcher']}>
         <ul>
           <li><FormattedMessage id="switchLanguage" /></li>
@@ -28,8 +107,8 @@ export function Header(props, context) {
             : null
         }
       </div>
-    </div>
-  );
+    </div>*/
+
 }
 
 Header.contextTypes = {
@@ -40,6 +119,7 @@ Header.propTypes = {
   toggleAddPost: PropTypes.func.isRequired,
   switchLanguage: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default Header;
+export default withStyles(styles)(Header);
