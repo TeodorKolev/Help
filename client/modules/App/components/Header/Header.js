@@ -58,6 +58,7 @@ class Header extends Component {
             aria-label='More'
             aria-owns={this.state.open ? 'long-menu' : null}
             aria-haspopup='true'
+            color='contrast'
             onClick={this.handleClick}
           >
             <MoreVertIcon />
@@ -67,19 +68,19 @@ class Header extends Component {
             anchorEl={this.state.anchorEl}
             open={this.state.open}
             onRequestClose={this.handleRequestClose}
-            color='contrast'
             PaperProps={{
               style: {
-                maxHeight: ITEM_HEIGHT * 4.5,
-                width: 200,
+                maxHeight: ITEM_HEIGHT * 4,
+                width: 100,
               },
             }}
           >
             {this.props.intl.enabledLanguages.map(lang =>
               <MenuItem key={lang} onClick={() => {
-                this.handleRequestClose(),
+                this.handleRequestClose()
                 this.props.switchLanguage(lang)
-              }} className={lang === this.props.intl.locale ? styles.selected : ''}>{lang}</MenuItem>
+              }} selected={lang === this.props.intl.locale}
+                className={lang === this.props.intl.locale ? styles.selected : ''}>{lang}</MenuItem>
             )}
           </Menu>
         </Toolbar>
