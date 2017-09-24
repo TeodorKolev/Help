@@ -1,13 +1,12 @@
-import React, { PropTypes, Component } from 'react';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import MenuIcon from 'material-ui-icons/Menu';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
-
+import React, { PropTypes, Component } from 'react'
+import AppBar from 'material-ui/AppBar'
+import Toolbar from 'material-ui/Toolbar'
+import MenuIcon from 'material-ui-icons/Menu'
+import { withStyles } from 'material-ui/styles'
+import Typography from 'material-ui/Typography'
+import IconButton from 'material-ui/IconButton'
+import Menu, { MenuItem } from 'material-ui/Menu'
+import MoreVertIcon from 'material-ui-icons/MoreVert'
 
 // Import Style
 // import styles from './Header.css';
@@ -24,52 +23,51 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
-});
+})
 
-const ITEM_HEIGHT = 48;
+const ITEM_HEIGHT = 48
 
 class Header extends Component {
-
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       anchorEl: null,
       open: false,
-    };
+    }
   }
 
   handleClick = event => {
-    this.setState({ open: true, anchorEl: event.currentTarget });
+    this.setState({ open: true, anchorEl: event.currentTarget })
   };
 
   handleRequestClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false })
   };
 
-  render() {
+  render () {
     return (
-      <AppBar position="static">
+      <AppBar position='static'>
         <Toolbar>
-          <IconButton className={this.props.classes.menuButton} color="contrast" aria-label="Menu">
+          <IconButton className={this.props.classes.menuButton} color='contrast' aria-label='Menu'>
             <MenuIcon />
           </IconButton>
-          <Typography type="title" color="inherit" className={this.props.classes.flex}>
+          <Typography type='title' color='inherit' className={this.props.classes.flex}>
             Help
           </Typography>
           <IconButton
-            aria-label="More"
+            aria-label='More'
             aria-owns={this.state.open ? 'long-menu' : null}
-            aria-haspopup="true"
+            aria-haspopup='true'
             onClick={this.handleClick}
           >
             <MoreVertIcon />
           </IconButton>
           <Menu
-            id="long-menu"
+            id='long-menu'
             anchorEl={this.state.anchorEl}
             open={this.state.open}
             onRequestClose={this.handleRequestClose}
-            color="contrast"
+            color='contrast'
             PaperProps={{
               style: {
                 maxHeight: ITEM_HEIGHT * 4.5,
@@ -89,7 +87,6 @@ class Header extends Component {
     )
   }
 
-
 /*    <div className={styles.header}>
       <div className={styles['language-switcher']}>
         <ul>
@@ -107,19 +104,18 @@ class Header extends Component {
             : null
         }
       </div>
-    </div>*/
-
+    </div> */
 }
 
 Header.contextTypes = {
   router: React.PropTypes.object,
-};
+}
 
 Header.propTypes = {
   toggleAddPost: PropTypes.func.isRequired,
   switchLanguage: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(Header)
