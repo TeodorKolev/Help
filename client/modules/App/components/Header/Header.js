@@ -7,6 +7,8 @@ import Typography from 'material-ui/Typography'
 import IconButton from 'material-ui/IconButton'
 import Menu, { MenuItem } from 'material-ui/Menu'
 import MoreVertIcon from 'material-ui-icons/MoreVert'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
 
 // Import Style
 // import styles from './Header.css';
@@ -52,7 +54,7 @@ class Header extends Component {
             <MenuIcon />
           </IconButton>
           <Typography type='title' color='inherit' className={this.props.classes.flex}>
-            Help
+            {this.props.headerTitle}
           </Typography>
           <IconButton
             aria-label='More'
@@ -117,6 +119,15 @@ Header.propTypes = {
   switchLanguage: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  headerTitle: PropTypes.string.isRequired,
 }
 
-export default withStyles(styles)(Header)
+// Retrieve data from store as props
+function mapStateToProps (store) {
+  return {
+    headerTitle: store.title.headerTitle,
+  }
+}
+
+export default compose(connect(mapStateToProps), withStyles(styles))(Header)
