@@ -20,6 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('./modules/Post/pages/PostDetailPage/PostDetailPage')
   require('./modules/HelpSeeker/pages/HelpSeekerListPage/HelpSeekerListPage')
   require('./modules/HelpSeeker/pages/HelpSeekerDetailPage/HelpSeekerDetailPage')
+  require('./modules/HelpSeeker/pages/HelpSeekerCreatePage/HelpSeekerCreatePage')
 }
 
 export default (
@@ -52,6 +53,14 @@ export default (
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('./modules/HelpSeeker/pages/HelpSeekerDetailPage/HelpSeekerDetailPage').default)
+        })
+      }}
+    />
+    <Route
+      path='/add'
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/HelpSeeker/pages/HelpSeekerCreatePage/HelpSeekerCreatePage').default)
         })
       }}
     />
