@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
-import { addHelpSeekerRequest } from '../../HelpSeekerActions'
+import { addHelpSeekerRequest, fetchHelpSeekers } from '../../HelpSeekerActions'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 
@@ -23,7 +23,7 @@ export class HelpSeekerCreatePage extends Component {
           <input placeholder={this.props.intl.messages.authorName} ref='name' />
           <input placeholder={this.props.intl.messages.postTitle} ref='description' />
           <textarea placeholder={this.props.intl.messages.postContent} ref='iban' />
-          <a href='#' onClick={this.addHelpSeeker}><FormattedMessage id='submit' /></a>
+          <button type='submit' onClick={this.addHelpSeeker}><FormattedMessage id='submit' /></button>
         </div>
       </div>
     )
@@ -31,9 +31,10 @@ export class HelpSeekerCreatePage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  handleAddHelpSeeker (name, title, content) {
-    dispatch(addHelpSeekerRequest({ name, title, content }))
-  }
+  handleAddHelpSeeker (name, description, iban) {
+    dispatch(fetchHelpSeekers())
+    dispatch(addHelpSeekerRequest({ name, description, iban }))
+  },
 })
 
 HelpSeekerCreatePage.propTypes = {

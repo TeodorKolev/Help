@@ -25,7 +25,7 @@ export function getHelpSeekers (req, res) {
  * @returns void
  */
 export function addHelpSeeker (req, res) {
-  if (!req.body.helpSeeker.name || !req.body.helpSeeker.title || !req.body.helpSeeker.content) {
+  if (!req.body.helpSeeker.name || !req.body.helpSeeker.description || !req.body.helpSeeker.iban) {
     res.status(403).end()
   }
 

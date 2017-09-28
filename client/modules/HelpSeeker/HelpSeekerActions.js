@@ -21,7 +21,7 @@ export function addHelpSeekerRequest (helpSeeker) {
         description: helpSeeker.description,
         iban: helpSeeker.iban,
       },
-    }).then(res => dispatch(addHelpSeeker(res.helpSeeker)))
+    }).then(res => console.log(res)).then(res => dispatch(addHelpSeeker(res.helpSeeker)))
   }
 }
 
