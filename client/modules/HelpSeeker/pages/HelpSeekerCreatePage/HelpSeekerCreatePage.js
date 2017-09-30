@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
-import { addHelpSeekerRequest, fetchHelpSeekers } from '../../HelpSeekerActions'
+import { addHelpSeekerRequest } from '../../HelpSeekerActions'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 
@@ -32,13 +32,13 @@ export class HelpSeekerCreatePage extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   handleAddHelpSeeker (name, description, iban) {
-    dispatch(fetchHelpSeekers())
     dispatch(addHelpSeekerRequest({ name, description, iban }))
   },
 })
 
 HelpSeekerCreatePage.propTypes = {
   intl: intlShape.isRequired,
+  handleAddHelpSeeker: PropTypes.func.isRequired
 }
 
 export default compose(injectIntl, connect(null, mapDispatchToProps))(HelpSeekerCreatePage)

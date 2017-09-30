@@ -25,6 +25,7 @@ export function getHelpSeekers (req, res) {
  * @returns void
  */
 export function addHelpSeeker (req, res) {
+  console.log(req.body.helpSeeker)
   if (!req.body.helpSeeker.name || !req.body.helpSeeker.description || !req.body.helpSeeker.iban) {
     res.status(403).end()
   }
@@ -32,21 +33,21 @@ export function addHelpSeeker (req, res) {
   const newHelpSeeker = new HelpSeeker(req.body.helpSeeker)
 
   // Let's sanitize inputs
-  newHelpSeeker.title = sanitizeHtml(newHelpSeeker.title)
   newHelpSeeker.name = sanitizeHtml(newHelpSeeker.name)
-  newHelpSeeker.image = sanitizeHtml(newHelpSeeker.image)
   newHelpSeeker.description = sanitizeHtml(newHelpSeeker.description)
+  newHelpSeeker.iban = sanitizeHtml(newHelpSeeker.iban)
+
+/*  newHelpSeeker.title = sanitizeHtml(newHelpSeeker.title)
+  newHelpSeeker.image = sanitizeHtml(newHelpSeeker.image)
   newHelpSeeker.status = sanitizeHtml(newHelpSeeker.status)
   newHelpSeeker.bank = sanitizeHtml(newHelpSeeker.bank)
-  newHelpSeeker.iban = sanitizeHtml(newHelpSeeker.iban)
   newHelpSeeker.bic = sanitizeHtml(newHelpSeeker.bic)
   newHelpSeeker.swift = sanitizeHtml(newHelpSeeker.swift)
   newHelpSeeker.holder = sanitizeHtml(newHelpSeeker.holder)
   newHelpSeeker.refs = sanitizeHtml(newHelpSeeker.refs)
   newHelpSeeker.dateAdded = sanitizeHtml(newHelpSeeker.dateAdded)
-  newHelpSeeker.dateStatusChanged = sanitizeHtml(newHelpSeeker.dateStatusChanged)
+  newHelpSeeker.dateStatusChanged = sanitizeHtml(newHelpSeeker.dateStatusChanged)*/
 
-  newHelpSeeker.slug = slug(newHelpSeeker.title.toLowerCase(), { lowercase: true })
   newHelpSeeker.cuid = cuid()
   newHelpSeeker.save((err, saved) => {
     if (err) {

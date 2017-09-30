@@ -15,13 +15,13 @@ export function addHelpSeeker (helpSeeker) {
 
 export function addHelpSeekerRequest (helpSeeker) {
   return (dispatch) => {
-    return callApi('helpSeekers', 'helpSeeker', {
+    return callApi('helpSeekers', 'post', {
       helpSeeker: {
         name: helpSeeker.name,
         description: helpSeeker.description,
         iban: helpSeeker.iban,
       },
-    }).then(res => console.log(res)).then(res => dispatch(addHelpSeeker(res.helpSeeker)))
+    }).then(res => dispatch(addHelpSeeker(res.helpSeeker)))
   }
 }
 
