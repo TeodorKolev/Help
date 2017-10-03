@@ -5,7 +5,7 @@ const helpSeekerSchema = new Schema({
   cuid: { type: 'String', required: false },
   title: { type: 'String', required: false },
   name: { type: 'String', required: true },
-  image: { type: 'Buffer', required: false },
+  image: { type: mongoose.Schema.Types.ObjectId, ref: 'HelpSeekerImgSchema', required: false },
   description: { type: 'String', required: true },
   status: { type: 'String', required: false },
   bank: { type: 'String', required: false },

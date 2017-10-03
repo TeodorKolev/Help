@@ -1,6 +1,7 @@
 import HelpSeeker from '../models/helpSeeker'
 import cuid from 'cuid'
 import slug from 'limax'
+import HelpSeekerImg from '../models/helpSeekerImg'
 import sanitizeHtml from 'sanitize-html'
 
 /**
@@ -37,6 +38,26 @@ export function addHelpSeeker (req, res) {
   newHelpSeeker.description = sanitizeHtml(newHelpSeeker.description)
   newHelpSeeker.iban = sanitizeHtml(newHelpSeeker.iban)
 
+  const fs = require('fs')
+  newHelpSeeker.image = new HelpSeekerImg({
+    data: fs.readFileSync(req.body.helpSeeker.image),
+    contentType: 'image/png'
+  })
+
+/*  let tempfile    = req.files.filename.path;
+  let origname    = req.files.filename.name;
+  let writestream = gfs.createWriteStream({ filename: origname });
+  // open a stream to the temporary file created by Express...
+  fs.createReadStream(tempfile)
+    .on('end', function() {
+      res.send('OK');
+    })
+    .on('error', function() {
+      res.send('ERR');
+    })
+    // and pipe it to gfs
+    .pipe(writestream); */
+
 /*  newHelpSeeker.title = sanitizeHtml(newHelpSeeker.title)
   newHelpSeeker.image = sanitizeHtml(newHelpSeeker.image)
   newHelpSeeker.status = sanitizeHtml(newHelpSeeker.status)
@@ -46,7 +67,7 @@ export function addHelpSeeker (req, res) {
   newHelpSeeker.holder = sanitizeHtml(newHelpSeeker.holder)
   newHelpSeeker.refs = sanitizeHtml(newHelpSeeker.refs)
   newHelpSeeker.dateAdded = sanitizeHtml(newHelpSeeker.dateAdded)
-  newHelpSeeker.dateStatusChanged = sanitizeHtml(newHelpSeeker.dateStatusChanged)*/
+  newHelpSeeker.dateStatusChanged = sanitizeHtml(newHelpSeeker.dateStatusChanged) */
 
   newHelpSeeker.cuid = cuid()
   newHelpSeeker.save((err, saved) => {

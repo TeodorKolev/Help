@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 // Import Components
 import HelpSeekerList from '../../components/HelpSeekerList'
-import HelpSeekerCreateWidget from '../../components/HelpSeekerCreateWidget/HelpSeekerCreateWidget'
 
 // Import Actions
 import { addHelpSeekerRequest, fetchHelpSeekers, deleteHelpSeekerRequest } from '../../HelpSeekerActions'

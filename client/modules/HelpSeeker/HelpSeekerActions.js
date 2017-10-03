@@ -20,6 +20,7 @@ export function addHelpSeekerRequest (helpSeeker) {
         name: helpSeeker.name,
         description: helpSeeker.description,
         iban: helpSeeker.iban,
+        image: helpSeeker.image
       },
     }).then(res => dispatch(addHelpSeeker(res.helpSeeker)))
   }
@@ -34,9 +35,7 @@ export function addHelpSeekers (helpSeekers) {
 
 export function fetchHelpSeekers () {
   return (dispatch) => {
-    return callApi('helpSeekers').then(res => {
-      dispatch(addHelpSeekers(res.helpSeekers))
-    })
+    return callApi('helpSeekers').then(res => dispatch(addHelpSeekers(res.helpSeekers)))
   }
 }
 
