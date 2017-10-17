@@ -26,7 +26,6 @@ export function getHelpSeekers (req, res) {
  * @returns void
  */
 export function addHelpSeeker (req, res) {
-  console.log(req.body.helpSeeker)
   if (!req.body.helpSeeker.name || !req.body.helpSeeker.description || !req.body.helpSeeker.iban) {
     res.status(403).end()
   }
@@ -38,25 +37,29 @@ export function addHelpSeeker (req, res) {
   newHelpSeeker.description = sanitizeHtml(newHelpSeeker.description)
   newHelpSeeker.iban = sanitizeHtml(newHelpSeeker.iban)
 
+  console.log(req.body.helpSeeker.image)
+
   const fs = require('fs')
   newHelpSeeker.image = new HelpSeekerImg({
-    data: fs.readFileSync(req.body.helpSeeker.image),
-    contentType: 'image/png'
+    data: req.body.helpSeeker.image,
+    contentType: req.body.helpSeeker.image.type
   })
 
-/*  let tempfile    = req.files.filename.path;
-  let origname    = req.files.filename.name;
-  let writestream = gfs.createWriteStream({ filename: origname });
-  // open a stream to the temporary file created by Express...
-  fs.createReadStream(tempfile)
-    .on('end', function() {
-      res.send('OK');
-    })
-    .on('error', function() {
-      res.send('ERR');
-    })
-    // and pipe it to gfs
-    .pipe(writestream); */
+/*  let mongoose = require('mongoose')
+  let Gridfs = require('gridfs-stream')
+  let db = mongoose.connection.db
+  let mongoDriver = mongoose.mongo
+  let gfs = new Gridfs(db, mongoDriver)
+  let writestream = gfs.createWriteStream({
+    filename: req.body.helpSeeker.image.name,
+    mode: 'w',
+    content_type: req.body.helpSeeker.image.type,
+  })
+  fs.createReadStream(req.body.helpSeeker.image).pipe(writestream)
+  writestream.on('close', function (file) {
+    newHelpSeeker.image = file._id
+    console.log(newHelpSeeker.image)
+  }) */
 
 /*  newHelpSeeker.title = sanitizeHtml(newHelpSeeker.title)
   newHelpSeeker.image = sanitizeHtml(newHelpSeeker.image)

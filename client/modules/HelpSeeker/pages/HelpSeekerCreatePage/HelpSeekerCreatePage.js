@@ -8,13 +8,17 @@ import { connect } from 'react-redux'
 
 export class HelpSeekerCreatePage extends Component {
   addHelpSeeker = () => {
-    console.log(this.refs.image.value)
     const nameRef = this.refs.name
     const descriptionRef = this.refs.description
     const ibanRef = this.refs.iban
     const imageRef = this.refs.image
-    if (nameRef.value && descriptionRef.value && ibanRef.value && imageRef.value) {
-      this.props.handleAddHelpSeeker(nameRef.value, descriptionRef.value, ibanRef.value, imageRef.value)
+    console.log(imageRef.files[0])
+    if (nameRef.value && descriptionRef.value && ibanRef.value) {
+      this.props.handleAddHelpSeeker(
+        nameRef.value,
+        descriptionRef.value,
+        ibanRef.value,
+        imageRef.files[0])
       nameRef.value = descriptionRef.value = ibanRef.value = imageRef.value = ''
     }
   };
