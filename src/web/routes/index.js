@@ -11,6 +11,10 @@ import Home from '../components/Home';
 import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
 import RecipeViewComponent from '../components/Recipe';
+import HelpSeekersContainer from '../../containers/HelpSeekers';
+import HelpSeekersComponent from '../components/HelpSeekers';
+import HelpSeekerView from '../components/HelpSeeker';
+
 
 import SignUpContainer from '../../containers/SignUp';
 import SignUpComponent from '../components/SignUp';
@@ -74,6 +78,14 @@ const Index = () => (
       render={props => (
         <TemplateSidebar>
           <RecipesContainer {...props} Layout={RecipesComponent} />
+        </TemplateSidebar>
+      )}
+    />
+    <Route
+      path="/helpSeekers"
+      render={props => (
+        <TemplateSidebar>
+          <HelpSeekersContainer {...props} Layout={HelpSeekersComponent} />
         </TemplateSidebar>
       )}
     />

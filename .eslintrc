@@ -4,6 +4,7 @@
   "ecmaFeatures": {
     "classes": true,
   },
+  "globals": { "fetch": false },
   "rules": {
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "global-require": "off",
@@ -15,6 +16,6 @@
     "no-underscore-dangle": "off",
     "prefer-promise-reject-errors": "off",
     "no-nested-ternary": "off",
-    "react/no-multi-comp": "off"
+    "react/no-multi-comp": "off",
   },
 }
