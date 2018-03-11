@@ -14,6 +14,7 @@ export function getHelpSeekers() {
 
   return async (dispatch) => {
     function onSuccess(success) {
+      console.log(success)
       return dispatch({ type: 'GET_HELP_SEEKERS', data: success });
     }
 

@@ -6,7 +6,7 @@ import { getHelpSeekers, setError } from '../actions/helpSeekers';
 
 class HelpSeekersListing extends Component {
   static propTypes = {
- /*   Layout: PropTypes.func.isRequired,
+    Layout: PropTypes.func.isRequired,
     helpSeekers: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       error: PropTypes.string,
@@ -16,29 +16,26 @@ class HelpSeekersListing extends Component {
       params: PropTypes.shape({}),
     }),
     getHelpSeekers: PropTypes.func.isRequired,
-    setError: PropTypes.func.isRequired,*/
-    getHelpSeekers: PropTypes.func.isRequired,
+    setError: PropTypes.func.isRequired,
   }
 
-/*  static defaultProps = {
+  static defaultProps = {
     match: null,
-  }*/
+  }
 
   componentDidMount = () => this.fetchHelpSeekers();
 
   /**
    * Fetch Data from API, saving to Redux
    */
-  fetchHelpSeekers = () => {
-    return this.props.getHelpSeekers()
-      /*.catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });*/
-  }
+  fetchHelpSeekers = () => this.props.getHelpSeekers()
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
   render = () => {
-   /* const { Layout, helpSeekers, match } = this.props;
+    const { Layout, helpSeekers, match } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
@@ -49,8 +46,7 @@ class HelpSeekersListing extends Component {
         helpSeekers={helpSeekers.helpSeekers}
         reFetch={() => this.fetchHelpSeekers()}
       />
-    );*/
-   return (<div>Test</div>)
+    );
   }
 }
 

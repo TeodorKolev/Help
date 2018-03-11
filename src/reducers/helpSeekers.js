@@ -8,10 +8,18 @@ export default function helpSeekerReducer(state = initialState, action) {
       let helpSeekersData = [];
       if (action.data && typeof action.data === 'object') {
         helpSeekersData = action.data.map(item => ({
-          id: item.id,
+          id: item._id,
           title: item.title,
           name: item.name,
+          image: item.image,
           description: item.description,
+          status: item.status,
+          bank: item.bank,
+          iban: item.iban,
+          bic: item.bic,
+          swift: item.swift,
+          holder: item.holder,
+          refs: item.refs,
         }));
       }
       return {
