@@ -1,5 +1,4 @@
-
-const dbUrl = 'http://localhost:3000/helpSeekers';
+const dbUrl = 'http://172.16.1.159:3000/helpSeekers';
 
 /**
  * Get this User's Favourite Recipes
@@ -11,22 +10,21 @@ export function getHelpSeekers() {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     },
   };
+
   return async (dispatch) => {
     function onSuccess(success) {
-      console.log(success);
-      dispatch({ type: 'GET_HELP_SEEKERS', data: success });
-      return success;
+      return dispatch({ type: 'GET_DATA', data: success });
     }
+
     function onError(error) {
-      dispatch({ type: 'HELP_SEEKERS_ERROR', error });
-      return error;
+      return dispatch({ type: 'GET_DATA_ERROR', data: error });
     }
+
     try {
-      const response = fetch(dbUrl, data);
-      const responseJson = response.json();
+      const response = await fetch(dbUrl, data);
+      const responseJson = await response.json();
       return onSuccess(responseJson);
     } catch (error) {
       return onError(error);
