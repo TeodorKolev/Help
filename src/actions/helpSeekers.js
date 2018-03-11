@@ -1,4 +1,4 @@
-const dbUrl = 'http://172.16.1.159:3000/helpSeekers';
+const dbUrl = 'http://localhost:3000/helpSeekers';
 
 /**
  * Get this User's Favourite Recipes
@@ -6,7 +6,6 @@ const dbUrl = 'http://172.16.1.159:3000/helpSeekers';
 export function getHelpSeekers() {
   const data = {
     method: 'GET',
-    mode: 'no-cors',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -15,11 +14,11 @@ export function getHelpSeekers() {
 
   return async (dispatch) => {
     function onSuccess(success) {
-      return dispatch({ type: 'GET_DATA', data: success });
+      return dispatch({ type: 'GET_HELP_SEEKERS', data: success });
     }
 
     function onError(error) {
-      return dispatch({ type: 'GET_DATA_ERROR', data: error });
+      return dispatch({ type: 'HELP_SEEKERS_ERROR', data: error });
     }
 
     try {
