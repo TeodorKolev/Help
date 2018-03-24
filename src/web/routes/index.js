@@ -92,7 +92,7 @@ const Index = () => (
       path="/node/:id"
       render={props => (
         <TemplateSidebar>
-          <RecipesContainer {...props} Layout={HelpSeekersViewComponent} />
+          <HelpSeekersContainer {...props} Layout={HelpSeekersViewComponent} />
         </TemplateSidebar>
       )}
     />
