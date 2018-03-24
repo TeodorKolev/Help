@@ -8,6 +8,7 @@ import {
   CardText,
   CardBody,
   CardTitle,
+  CardSubtitle
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Error from './Error';
@@ -23,7 +24,8 @@ const HelpSeekerListing = ({ error, loading, helpSeekers }) => {
         <CardImg top src={item.image} alt={item.title} />
       </Link>
       <CardBody>
-        <CardTitle>{item.title}</CardTitle>
+        <CardTitle>{item.name}</CardTitle>
+        <CardSubtitle>{item.iban}</CardSubtitle>
         <CardText>{item.description}</CardText>
         <Link className="btn btn-primary" to={`/node/${item.id}`}>View HelpSeeker <i className="icon-arrow-right" /></Link>
       </CardBody>

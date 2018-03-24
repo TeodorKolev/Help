@@ -38,8 +38,8 @@ const HelpSeeker = ({
     <div>
       <Row>
         <Col sm="12">
-          <h1>{helpSeeker.title}</h1>
-          <p>by {helpSeeker.name}</p>
+          <h1>{helpSeeker.iban}</h1>
+          <p>{helpSeeker.name}</p>
         </Col>
       </Row>
       <Row>
