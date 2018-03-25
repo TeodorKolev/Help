@@ -8,17 +8,17 @@ import {
   CardText,
   CardBody,
   CardTitle,
-  CardSubtitle
+  CardSubtitle,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Error from './Error';
 
-const HelpSeekerListing = ({ error, loading, helpSeekers }) => {
+const NodeListing = ({ error, loading, nodes }) => {
   // Error
   if (error) return <Error content={error} />;
 
   // Build Cards for Listing
-  const cards = helpSeekers.map(item => (
+  const cards = nodes.map(item => (
     <Card key={`${item.id}`}>
       <Link to={`/node/${item.id}`}>
         <CardImg top src={item.image} alt={item.title} />
@@ -27,7 +27,7 @@ const HelpSeekerListing = ({ error, loading, helpSeekers }) => {
         <CardTitle>{item.name}</CardTitle>
         <CardSubtitle>{item.iban}</CardSubtitle>
         <CardText>{item.description}</CardText>
-        <Link className="btn btn-primary" to={`/node/${item.id}`}>View HelpSeeker <i className="icon-arrow-right" /></Link>
+        <Link className="btn btn-primary" to={`/node/${item.id}`}>View Node <i className="icon-arrow-right" /></Link>
       </CardBody>
     </Card>
   ));
@@ -37,7 +37,7 @@ const HelpSeekerListing = ({ error, loading, helpSeekers }) => {
     <div>
       <Row>
         <Col sm="12">
-          <h1>HelpSeekers</h1>
+          <h1>Nodes</h1>
           <p>The following data is read directly from Firebase.</p>
         </Col>
       </Row>
@@ -50,14 +50,14 @@ const HelpSeekerListing = ({ error, loading, helpSeekers }) => {
   );
 };
 
-HelpSeekerListing.propTypes = {
+NodeListing.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  helpSeekers: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  nodes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-HelpSeekerListing.defaultProps = {
+NodeListing.defaultProps = {
   error: null,
 };
 
-export default HelpSeekerListing;
+export default NodeListing;

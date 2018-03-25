@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getHelpSeekers, setError } from '../actions/helpSeekers';
+import { getNodes, setError } from '../actions/node';
 
-class HelpSeekersListing extends Component {
+class NodesListing extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
-    helpSeekers: PropTypes.shape({
+    nodes: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       error: PropTypes.string,
-      helpSeekers: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+      nodes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     }).isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({}),
     }),
-    getHelpSeekers: PropTypes.func.isRequired,
+    getNodes: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
   }
 
@@ -23,40 +23,40 @@ class HelpSeekersListing extends Component {
     match: null,
   }
 
-  componentDidMount = () => this.fetchHelpSeekers();
+  componentDidMount = () => this.fetchNodes();
 
   /**
    * Fetch Data from API, saving to Redux
    */
-  fetchHelpSeekers = () => this.props.getHelpSeekers()
+  fetchNodes = () => this.props.getNodes()
     .catch((err) => {
       console.log(`Error: ${err}`);
       return this.props.setError(err);
     })
 
   render = () => {
-    const { Layout, helpSeekers, match } = this.props;
+    const { Layout, nodes, match } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
       <Layout
-        helpSeekerId={id}
-        error={helpSeekers.error}
-        loading={helpSeekers.loading}
-        helpSeekers={helpSeekers.helpSeekers}
-        reFetch={() => this.fetchHelpSeekers()}
+        nodeId={id}
+        error={nodes.error}
+        loading={nodes.loading}
+        nodes={nodes.nodes}
+        reFetch={() => this.fetchNodes()}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  helpSeekers: state.helpSeekers || {},
+  nodes: state.nodes || {},
 });
 
 const mapDispatchToProps = {
-  getHelpSeekers,
+  getNodes,
   setError,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HelpSeekersListing);
+export default connect(mapStateToProps, mapDispatchToProps)(NodesListing);

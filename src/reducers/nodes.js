@@ -1,13 +1,13 @@
-import HelpSeeker from '../store/helpSeeker';
+import Node from '../store/node';
 
-export const initialState = HelpSeeker;
+export const initialState = Node;
 
-export default function helpSeekerReducer(state = initialState, action) {
+export default function nodeReducer(state = initialState, action) {
   switch (action.type) {
-    case 'GET_HELP_SEEKERS': {
-      let helpSeekersData = [];
+    case 'GET_NODES': {
+      let nodesData = [];
       if (action.data && typeof action.data === 'object') {
-        helpSeekersData = action.data.map(item => ({
+        nodesData = action.data.map(item => ({
           id: item._id,
           title: item.title,
           name: item.name,
@@ -26,10 +26,10 @@ export default function helpSeekerReducer(state = initialState, action) {
         ...state,
         error: null,
         loading: false,
-        helpSeekers: helpSeekersData,
+        nodes: nodesData,
       };
     }
-    case 'HELP_SEEKERS_ERROR': {
+    case 'NODES_ERROR': {
       return {
         ...state,
         error: action.data,

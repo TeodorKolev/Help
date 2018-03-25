@@ -13,11 +13,11 @@ import ErrorMessages from '../../constants/errors';
 import Loading from './Loading';
 import Error from './Error';
 
-const HelpSeeker = ({
+const Node = ({
   error,
   loading,
-  helpSeekers,
-  helpSeekerId,
+  nodes,
+  nodeId,
 }) => {
   // Loading
   if (loading) return <Loading />;
@@ -25,21 +25,21 @@ const HelpSeeker = ({
   // Error
   if (error) return <Error content={error} />;
 
-  // Get this Recipe from all recipes
-  let helpSeeker = null;
-  if (helpSeekerId && helpSeekers) {
-    helpSeeker = helpSeekers.find(item => parseInt(item.id, 10) === parseInt(helpSeekerId, 10));
+  // Get this Node from all nodes
+  let node = null;
+  if (nodeId && nodes) {
+    node = nodes.find(item => parseInt(item.id, 10) === parseInt(nodeId, 10));
   }
 
   // Recipe not found
-  if (!helpSeeker) return <Error content={ErrorMessages.recipe404} />;
+  if (!node) return <Error content={ErrorMessages.recipe404} />;
 
   return (
     <div>
       <Row>
         <Col sm="12">
-          <h1>{helpSeeker.iban}</h1>
-          <p>{helpSeeker.name}</p>
+          <h1>{node.iban}</h1>
+          <p>{node.name}</p>
         </Col>
       </Row>
       <Row>
@@ -47,7 +47,7 @@ const HelpSeeker = ({
           <Card>
             <CardHeader>About this recipe</CardHeader>
             <CardBody>
-              <CardText>{helpSeeker.description}</CardText>
+              <CardText>{node.description}</CardText>
             </CardBody>
           </Card>
         </Col>
@@ -61,15 +61,15 @@ const HelpSeeker = ({
   );
 };
 
-HelpSeeker.propTypes = {
+Node.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  helpSeekerId: PropTypes.string.isRequired,
-  helpSeekers: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  nodeId: PropTypes.string.isRequired,
+  nodes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-HelpSeeker.defaultProps = {
+Node.defaultProps = {
   error: null,
 };
 
-export default HelpSeeker;
+export default Node;

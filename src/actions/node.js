@@ -1,9 +1,9 @@
-const dbUrl = 'http://localhost:3000/helpSeekers';
+const dbUrl = 'http://localhost:3000/nodes';
 
 /**
  * Get this User's Favourite Recipes
  */
-export function getHelpSeekers() {
+export function getNodes() {
   const data = {
     method: 'GET',
     headers: {
@@ -14,14 +14,12 @@ export function getHelpSeekers() {
 
   return async (dispatch) => {
     function onSuccess(success) {
-      console.log(success)
-      return dispatch({ type: 'GET_HELP_SEEKERS', data: success });
+      console.log(success);
+      return dispatch({ type: 'GET_NODES', data: success });
     }
-
     function onError(error) {
-      return dispatch({ type: 'HELP_SEEKERS_ERROR', data: error });
+      return dispatch({ type: 'NODES_ERROR', data: error });
     }
-
     try {
       const response = await fetch(dbUrl, data);
       const responseJson = await response.json();
@@ -37,7 +35,7 @@ export function getHelpSeekers() {
  */
 export function setError(message) {
   return dispatch => new Promise(resolve => resolve(dispatch({
-    type: 'HELP_SEEKERS_ERROR',
+    type: 'NODES_ERROR',
     data: message,
   })));
 }

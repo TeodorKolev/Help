@@ -1,7 +1,7 @@
 import status from './status';
 import member from './member';
 import recipes from './recipes';
-import helpSeekers from './helpSeekers';
+import nodes from './nodes';
 
 const rehydrated = (state = false, action) => {
   switch (action.type) {
@@ -17,5 +17,5 @@ export default {
   status,
   member,
   recipes,
-  helpSeekers,
+  nodes,
 };
