@@ -7,6 +7,7 @@ import {
   CardText,
   CardBody,
   CardHeader,
+  CardImg
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ErrorMessages from '../../constants/errors';
@@ -28,7 +29,8 @@ const Node = ({
   // Get this Node from all nodes
   let node = null;
   if (nodeId && nodes) {
-    node = nodes.find(item => parseInt(item.id, 10) === parseInt(nodeId, 10));
+    node = nodes.find(item => item.id === nodeId);
+    console.log(JSON.stringify(node))
   }
 
   // Recipe not found
@@ -36,10 +38,12 @@ const Node = ({
 
   return (
     <div>
+
       <Row>
-        <Col sm="12">
+        <Col sm="12" lg="4">
           <h1>{node.iban}</h1>
           <p>{node.name}</p>
+          <CardImg top src={node.image} alt={node.title} />
         </Col>
       </Row>
       <Row>
