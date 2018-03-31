@@ -1,4 +1,4 @@
-const dbUrl = 'http://localhost:3000/nodes';
+const dbUrl = 'http://localhost:3000/api/nodes';
 
 /**
  * Get this User's Favourite Recipes

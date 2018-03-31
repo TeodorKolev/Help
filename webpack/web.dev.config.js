@@ -52,6 +52,9 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
         PLATFORM_ENV: JSON.stringify('web'),
