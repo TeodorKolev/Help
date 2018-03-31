@@ -38,16 +38,16 @@ const Node = ({
 
   return (
     <div>
-
       <Row>
-        <Col sm="12" lg="4">
-          <h1>{node.iban}</h1>
-          <p>{node.name}</p>
-          <CardImg top src={node.image} alt={node.title} />
+        <Col sm="12" lg="12">
+          <img src={node.image} alt={node.title} className="node-image" />
+        </Col>
+        <Col sm="12" lg="12">
+          <h1>{node.title}</h1>
         </Col>
       </Row>
       <Row>
-        <Col lg="4" className="recipe-view-card">
+        <Col lg="12" className="recipe-view-card">
           <Card>
             <CardHeader>About this recipe</CardHeader>
             <CardBody>

@@ -18,7 +18,7 @@ export function getNodes() {
       return dispatch({ type: 'GET_NODES', data: success });
     }
     function onError(error) {
-      return dispatch({ type: 'NODES_ERROR', data: error });
+      return dispatch({ type: 'NODES_ERROR', data: error.toString() });
     }
     try {
       const response = await fetch(dbUrl, data);
